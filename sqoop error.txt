@@ -1,0 +1,82 @@
+[root@etl-offload ~]# sqoop import --connect jdbc:mysql://localhost:3306/iot --username root --password Dees_12345 --table greenhouse --target-dir /root/sqoop_import
+Warning: /usr/lib/sqoop/../hbase does not exist! HBase imports will fail.
+Please set $HBASE_HOME to the root of your HBase installation.
+Warning: /usr/lib/sqoop/../hcatalog does not exist! HCatalog jobs will fail.
+Please set $HCAT_HOME to the root of your HCatalog installation.
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+2020-01-22 07:53:26,903 INFO sqoop.Sqoop: Running Sqoop version: 1.4.5
+2020-01-22 07:53:26,932 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+2020-01-22 07:53:27,019 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+2020-01-22 07:53:27,019 INFO tool.CodeGenTool: Beginning code generation
+2020-01-22 07:53:27,390 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `greenhouse` AS t LIMIT 1
+2020-01-22 07:53:27,412 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `greenhouse` AS t LIMIT 1
+2020-01-22 07:53:27,418 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /opt/hadoop-3.1.2
+Note: /tmp/sqoop-root/compile/1f5ca1175f5e9db883b4c3d43a957cce/greenhouse.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+2020-01-22 07:53:28,618 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-root/compile/1f5ca1175f5e9db883b4c3d43a957cce/greenhouse.jar
+2020-01-22 07:53:28,629 WARN manager.MySQLManager: It looks like you are importing from mysql.
+2020-01-22 07:53:28,629 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+2020-01-22 07:53:28,629 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+2020-01-22 07:53:28,629 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+2020-01-22 07:53:28,633 INFO mapreduce.ImportJobBase: Beginning import of greenhouse
+2020-01-22 07:53:28,634 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+2020-01-22 07:53:28,840 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+2020-01-22 07:53:28,939 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2020-01-22 07:53:29,073 INFO impl.MetricsConfig: loaded properties from hadoop-metrics2.properties
+2020-01-22 07:53:29,094 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+2020-01-22 07:53:29,094 INFO impl.MetricsSystemImpl: JobTracker metrics system started
+2020-01-22 07:53:29,190 INFO db.DBInputFormat: Using read commited transaction isolation
+2020-01-22 07:53:29,202 INFO mapreduce.JobSubmitter: number of splits:1
+2020-01-22 07:53:29,314 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local2115241255_0001
+2020-01-22 07:53:29,315 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2020-01-22 07:53:29,485 INFO mapred.LocalDistributedCacheManager: Creating symlink: /tmp/hadoop-root/mapred/local/1579697609388/libjars <- /root/libjars/*
+2020-01-22 07:53:29,488 WARN fs.FileUtil: Command 'ln -s /tmp/hadoop-root/mapred/local/1579697609388/libjars /root/libjars/*' failed 1 with: ln: failed to create symbolic link ‘/root/libjars/*’: No such file or directory
+
+2020-01-22 07:53:29,488 WARN mapred.LocalDistributedCacheManager: Failed to create symlink: /tmp/hadoop-root/mapred/local/1579697609388/libjars <- /root/libjars/*
+2020-01-22 07:53:29,488 INFO mapred.LocalDistributedCacheManager: Localized file:/tmp/hadoop/mapred/staging/root2115241255/.staging/job_local2115241255_0001/libjars as file:/tmp/hadoop-root/mapred/local/1579697609388/libjars
+2020-01-22 07:53:29,538 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
+2020-01-22 07:53:29,539 INFO mapreduce.Job: Running job: job_local2115241255_0001
+2020-01-22 07:53:29,540 INFO mapred.LocalJobRunner: OutputCommitter set in config null
+2020-01-22 07:53:29,547 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2020-01-22 07:53:29,547 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2020-01-22 07:53:29,547 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+2020-01-22 07:53:29,579 INFO mapred.LocalJobRunner: Waiting for map tasks
+2020-01-22 07:53:29,580 INFO mapred.LocalJobRunner: Starting task: attempt_local2115241255_0001_m_000000_0
+2020-01-22 07:53:29,601 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2020-01-22 07:53:29,601 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2020-01-22 07:53:29,615 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+2020-01-22 07:53:29,627 INFO db.DBInputFormat: Using read commited transaction isolation
+2020-01-22 07:53:29,631 INFO mapred.MapTask: Processing split: 1=1 AND 1=1
+2020-01-22 07:53:29,651 INFO mapred.LocalJobRunner: map task executor complete.
+2020-01-22 07:53:29,652 WARN mapred.LocalJobRunner: job_local2115241255_0001
+java.lang.Exception: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class greenhouse not found
+        at org.apache.hadoop.mapred.LocalJobRunner$Job.runTasks(LocalJobRunner.java:492)
+        at org.apache.hadoop.mapred.LocalJobRunner$Job.run(LocalJobRunner.java:552)
+Caused by: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class greenhouse not found
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2595)
+        at org.apache.sqoop.mapreduce.db.DBConfiguration.getInputClass(DBConfiguration.java:403)
+        at org.apache.sqoop.mapreduce.db.DataDrivenDBInputFormat.createDBRecordReader(DataDrivenDBInputFormat.java:233)
+        at org.apache.sqoop.mapreduce.db.DBInputFormat.createRecordReader(DBInputFormat.java:263)
+        at org.apache.hadoop.mapred.MapTask$NewTrackingRecordReader.<init>(MapTask.java:527)
+        at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:770)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:347)
+        at org.apache.hadoop.mapred.LocalJobRunner$Job$MapTaskRunnable.run(LocalJobRunner.java:271)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+        at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.ClassNotFoundException: Class greenhouse not found
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:2499)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2593)
+        ... 12 more
+2020-01-22 07:53:30,543 INFO mapreduce.Job: Job job_local2115241255_0001 running in uber mode : false
+2020-01-22 07:53:30,544 INFO mapreduce.Job:  map 0% reduce 0%
+2020-01-22 07:53:30,546 INFO mapreduce.Job: Job job_local2115241255_0001 failed with state FAILED due to: NA
+2020-01-22 07:53:30,553 INFO mapreduce.Job: Counters: 0
+2020-01-22 07:53:30,556 WARN mapreduce.Counters: Group FileSystemCounters is deprecated. Use org.apache.hadoop.mapreduce.FileSystemCounter instead
+2020-01-22 07:53:30,557 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 1.6103 seconds (0 bytes/sec)
+2020-01-22 07:53:30,558 WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2020-01-22 07:53:30,558 INFO mapreduce.ImportJobBase: Retrieved 0 records.
+2020-01-22 07:53:30,558 ERROR tool.ImportTool: Error during import: Import job failed!
