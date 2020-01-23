@@ -1,0 +1,41 @@
+
+1 Step :
+vi Flume/conf/flume.conf
+
+#Name of the component 
+agent.sources = seqLogs
+agent.channels = logChannel
+agent.sinks = HDFS
+
+# For each one of the sources, the type is defined
+# Describe the Sources
+agent.sources.seqLogs.type = exec
+agent.sources.seqLogs.command = tail -f /home/imp/test.log  
+
+
+
+# Describe the Sink
+# Each sink's type must be defined
+agent.sinks.HDFS.type = hdfs
+agent.sinks.HDFS.hdfs.path = hdfs://localhost:9000/flume_demo
+agent.sinks.HDFS.hdfs.fileType = DataStream
+
+#Use a channel which buffers events in memory 
+agent.channels.logChannel.type=memory
+agent.channels.logChannel.capacity=1000
+agent.channels.logChannel.transactionCapacity=100
+
+#Bind the source,sink and channel
+agent.sources.seqLogs.channels = logChannel
+agent.sinks.HDFS.channel = logChannel
+
+2nd Step
+Change the path to your local system log file
+agent.sources.seqLogs.command = tail -f /home/impadmin/test.log 
+
+3rd Step:
+Change the path of hdfs:
+agent.sinks.HDFS.hdfs.path = hdfs://localhost:9000/flume_demo
+
+4th Step: Run the below command inside flume folder
+ bin/flume-ng agent --conf ./conf/ -f conf/flume.conf -n agent
