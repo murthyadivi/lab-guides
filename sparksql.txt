@@ -1,1 +1,32 @@
 customers_df = spark.read.format("csv").option("header","true").load("/root/customers.csv")
+orders_df = spark.read.format("csv").option("header", "true").load("/root/orders.csv")
+customers_df.createOrReplaceTempView("customers")
+spark.sql("select * from customers join orders on customers.customer_id = orders.order_customer_id").show()
+spark.sql("select distinct order_customer_id from orders").show()
+spark.sql("select count(*) from (select distinct order_customer_id from orders)").show()
+
+spark.sql("select order_customer_id from orders").count()
+output is 68883
+spark.sql("select order_customer_id from orders").dropDuplicates().count()
+output is 12405
+
+in orders.csv put this 
+68884,,,COMPLETE
+
+spark.sql("select * from orders where order_date is null").show()
+
+spark.sql("select * from orders").filter("order_date is null").count()
+
+spark.sql("select * from orders").filter("order_date is not null").count()
+
+spark.sql("select * from orders where order_date is not null").count()
+
+spark.sql("select * from customers left outer join orders on customers.customer_id = orders.order_customer_id").show()
+
+spark.sql("select order_id, order_customer_id , order_customer_id * 1000 as amount from orders ").show()
+
+df = spark.sql("select order_id, order_customer_id , order_customer_id * 1000 as amount from orders ")
+
+df.write.text("/Users/trendytech/Desktop/outfolder2")
+
+
