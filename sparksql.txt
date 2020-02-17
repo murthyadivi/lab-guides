@@ -1,0 +1,1 @@
+customers_df = spark.read.format("csv").option("header","true").load("/root/customers.csv")
